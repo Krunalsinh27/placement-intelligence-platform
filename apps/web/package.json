@@ -1,0 +1,19 @@
+{
+  "name": "@placement-platform/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Frontend SPA for Placement Intelligence Platform (typecheck-only stub)",
+  "type": "module",
+  "main": "./src/main.tsx",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@placement-platform/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "typescript": "^5.7.3"
+  }
+}

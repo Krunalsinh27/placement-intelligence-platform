@@ -1,0 +1,28 @@
+{
+  "name": "placement-platform-root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-tenant SaaS Placement Intelligence Platform monorepo",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": ">=9.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "pnpm -r --if-present run test",
+    "typecheck": "pnpm -r run typecheck"
+  },
+  "prettier": "@placement-platform/config/prettier",
+  "devDependencies": {
+    "@placement-platform/config": "workspace:*",
+    "eslint": "^10.12.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@placement-platform/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "API backend for Placement Intelligence Platform (typecheck-only stub)",
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@placement-platform/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^5.7.3"
+  }
+}

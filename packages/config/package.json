@@ -1,0 +1,17 @@
+{
+  "name": "@placement-platform/config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared configurations for Placement Intelligence Platform",
+  "type": "module",
+  "exports": {
+    "./eslint": "./eslint.config.js",
+    "./prettier": "./prettier.config.js"
+  },
+  "dependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "typescript-eslint": "^8.71.1"
+  }
+}
