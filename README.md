@@ -17,18 +17,17 @@ Multi-tenant SaaS platform for college placement operations, training and placem
 
 ```text
 .
-├── apps/
-│   ├── api/                 # Express backend modular monolith (typecheck stub)
-│   └── web/                 # React SPA frontend (typecheck stub)
-├── packages/
-│   ├── config/              # Shared ESLint and Prettier configs
-│   └── contracts/           # Shared Zod 4 schemas, DTOs, and enums
-├── docs/                    # Architecture documentation, ADRs, and blueprint
-│   ├── adr/                 # Architecture Decision Records (Drafts)
-│   ├── architecture.md      # System architecture document
-│   └── placement-platform-blueprint.md # Canonical product and engineering blueprint
-├── .github/                 # Workflows and PR templates
-└── tsconfig.base.json       # Strict TypeScript compiler options
+|-- apps/
+|   |-- api/        # Express backend modular monolith (typecheck stub)
+|   `-- web/        # React SPA frontend (typecheck stub)
+|-- packages/
+|   |-- config/     # Shared ESLint and Prettier configs
+|   `-- contracts/  # Shared Zod 4 schemas, DTOs, and enums
+|-- docs/           # Architecture documentation and ADRs
+|   |-- adr/        # Architecture Decision Records (Drafts)
+|   `-- architecture.md
+|-- .github/        # Workflows and PR templates
+`-- tsconfig.base.json
 ```
 
 ## Prerequisites
