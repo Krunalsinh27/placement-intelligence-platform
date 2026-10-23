@@ -1,14 +1,13 @@
-import type { ApiResponseMeta } from '@placement-platform/contracts';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.js';
 
-export interface WebClientState {
-  app: string;
-  status: 'ready' | 'loading';
-  lastPing?: ApiResponseMeta;
-}
+const rootEl = document.getElementById('root');
+if (!rootEl) throw new Error('Root element #root not found in index.html');
 
-export function getInitialClientState(): WebClientState {
-  return {
-    app: 'placement-platform-web',
-    status: 'ready',
-  };
-}
+createRoot(rootEl).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);

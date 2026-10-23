@@ -5,11 +5,14 @@
   "description": "Multi-tenant SaaS Placement Intelligence Platform monorepo",
   "packageManager": "pnpm@9.15.9",
   "engines": {
-    "node": ">=24 <25",
+    "node": ">=22 <23",
     "pnpm": ">=9.0.0"
   },
   "type": "module",
   "scripts": {
+    "dev": "pnpm --parallel --filter @placement-platform/api --filter @placement-platform/web run dev",
+    "dev:api": "pnpm --filter @placement-platform/api run dev",
+    "dev:web": "pnpm --filter @placement-platform/web run dev",
     "build": "pnpm -r run build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
