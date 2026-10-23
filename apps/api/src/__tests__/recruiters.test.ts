@@ -261,7 +261,9 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
     it('rejects company_admin from inviting for a different company', async () => {
       mockSession('company_admin', null, companyAdminUserId, 'admin@acme.example.com');
 
-      vi.spyOn(CompanyModel, 'findById').mockResolvedValue(mockCompanyDoc({ _id: otherCompanyId }) as never);
+      vi.spyOn(CompanyModel, 'findById').mockResolvedValue(
+        mockCompanyDoc({ _id: otherCompanyId }) as never
+      );
       // Company admin does NOT have a record for otherCompanyId
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(null);
 
@@ -282,7 +284,9 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
       mockSession('tpo', collegeAOrgId);
 
       vi.spyOn(CompanyModel, 'findById').mockResolvedValue(mockCompanyDoc() as never);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(
         mockRecruiterDoc({ status: 'active' }) as never
       );
@@ -300,7 +304,9 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
       mockSession('tpo', collegeAOrgId);
 
       vi.spyOn(CompanyModel, 'findById').mockResolvedValue(mockCompanyDoc() as never);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(
         mockRecruiterDoc({
           status: 'pending_invitation',
@@ -321,7 +327,9 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
       mockSession('tpo', collegeAOrgId);
 
       vi.spyOn(CompanyModel, 'findById').mockResolvedValue(mockCompanyDoc() as never);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
 
       const inactiveRecruiter = mockRecruiterDoc({
         status: 'inactive',
@@ -375,14 +383,14 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
         invitationTokenHash: null,
         invitationExpiresAt: null,
       });
-      vi.spyOn(CompanyRecruiterModel, 'findOneAndUpdate').mockResolvedValue(activeRecruiter as never);
+      vi.spyOn(CompanyRecruiterModel, 'findOneAndUpdate').mockResolvedValue(
+        activeRecruiter as never
+      );
 
-      const res = await request(app)
-        .post('/api/v1/recruiters/accept-invitation')
-        .send({
-          token: rawToken,
-          password: 'securePassword123!',
-        });
+      const res = await request(app).post('/api/v1/recruiters/accept-invitation').send({
+        token: rawToken,
+        password: 'securePassword123!',
+      });
 
       expect(res.status).toBe(200);
       expect(res.body.data.status).toBe('active');
@@ -506,7 +514,9 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
         status: 'active',
         userId: existingUserId,
       });
-      vi.spyOn(CompanyRecruiterModel, 'findOneAndUpdate').mockResolvedValue(activeRecruiter as never);
+      vi.spyOn(CompanyRecruiterModel, 'findOneAndUpdate').mockResolvedValue(
+        activeRecruiter as never
+      );
 
       const res = await request(app)
         .post('/api/v1/recruiters/accept-invitation')
@@ -595,7 +605,9 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
       });
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(pendingRecruiter as never);
       vi.spyOn(UserModel, 'findOne').mockResolvedValue(null);
-      vi.spyOn(UserModel, 'create').mockResolvedValue({ _id: new mongoose.Types.ObjectId() } as never);
+      vi.spyOn(UserModel, 'create').mockResolvedValue({
+        _id: new mongoose.Types.ObjectId(),
+      } as never);
 
       // Simulate findOneAndUpdate returning null because another concurrent request consumed it first
       vi.spyOn(CompanyRecruiterModel, 'findOneAndUpdate').mockResolvedValue(null);
@@ -622,10 +634,12 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
       vi.spyOn(CompanyRecruiterModel, 'find').mockReturnValue({
         sort: vi.fn().mockReturnThis(),
         skip: vi.fn().mockReturnThis(),
-        limit: vi.fn().mockResolvedValue([
-          mockRecruiterDoc({ name: 'Alice', role: 'company_admin' }),
-          mockRecruiterDoc({ name: 'Bob', role: 'company_recruiter' }),
-        ]),
+        limit: vi
+          .fn()
+          .mockResolvedValue([
+            mockRecruiterDoc({ name: 'Alice', role: 'company_admin' }),
+            mockRecruiterDoc({ name: 'Bob', role: 'company_recruiter' }),
+          ]),
       } as never);
 
       const res = await request(app)
@@ -682,13 +696,17 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
 
     it('resends invitation with refreshed token and expiration', async () => {
       mockSession('tpo', collegeAOrgId);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
 
       const pendingRecruiter = mockRecruiterDoc({ _id: recruiterId, status: 'pending_invitation' });
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(pendingRecruiter as never);
 
       const res = await request(app)
-        .post(`/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/resend`)
+        .post(
+          `/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/resend`
+        )
         .set('Cookie', [`session=${rawSessionToken}`]);
 
       expect(res.status).toBe(200);
@@ -701,13 +719,17 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
 
     it('rejects resend for an already active recruiter', async () => {
       mockSession('tpo', collegeAOrgId);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
 
       const activeRecruiter = mockRecruiterDoc({ _id: recruiterId, status: 'active' });
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(activeRecruiter as never);
 
       const res = await request(app)
-        .post(`/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/resend`)
+        .post(
+          `/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/resend`
+        )
         .set('Cookie', [`session=${rawSessionToken}`]);
 
       expect(res.status).toBe(400);
@@ -716,13 +738,17 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
 
     it('revokes a pending invitation', async () => {
       mockSession('tpo', collegeAOrgId);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
 
       const pendingRecruiter = mockRecruiterDoc({ _id: recruiterId, status: 'pending_invitation' });
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(pendingRecruiter as never);
 
       const res = await request(app)
-        .post(`/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/revoke`)
+        .post(
+          `/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/revoke`
+        )
         .set('Cookie', [`session=${rawSessionToken}`]);
 
       expect(res.status).toBe(200);
@@ -736,13 +762,17 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
 
     it('deactivates an active recruiter', async () => {
       mockSession('tpo', collegeAOrgId);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
 
       const activeRecruiter = mockRecruiterDoc({ _id: recruiterId, status: 'active' });
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(activeRecruiter as never);
 
       const res = await request(app)
-        .post(`/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/deactivate`)
+        .post(
+          `/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/deactivate`
+        )
         .set('Cookie', [`session=${rawSessionToken}`]);
 
       expect(res.status).toBe(200);
@@ -755,13 +785,17 @@ describe('Recruiter Management & Invitations Backend (Phase 6, Step 3)', () => {
 
     it('rejects deactivating an already inactive recruiter with NO_STATE_CHANGE', async () => {
       mockSession('tpo', collegeAOrgId);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({ status: 'verified' } as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue({
+        status: 'verified',
+      } as never);
 
       const inactiveRecruiter = mockRecruiterDoc({ _id: recruiterId, status: 'inactive' });
       vi.spyOn(CompanyRecruiterModel, 'findOne').mockResolvedValue(inactiveRecruiter as never);
 
       const res = await request(app)
-        .post(`/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/deactivate`)
+        .post(
+          `/api/v1/companies/${companyId.toString()}/recruiters/${recruiterId.toString()}/deactivate`
+        )
         .set('Cookie', [`session=${rawSessionToken}`]);
 
       expect(res.status).toBe(400);

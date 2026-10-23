@@ -28,7 +28,11 @@ export function buildStudentQueryString(filters?: Partial<StudentQueryFilters>):
   if (filters.search !== undefined && filters.search !== null && filters.search.trim() !== '') {
     params.set('search', filters.search.trim());
   }
-  if (filters.departmentId !== undefined && filters.departmentId !== null && filters.departmentId.trim() !== '') {
+  if (
+    filters.departmentId !== undefined &&
+    filters.departmentId !== null &&
+    filters.departmentId.trim() !== ''
+  ) {
     params.set('departmentId', filters.departmentId.trim());
   }
   if (filters.batchId !== undefined && filters.batchId !== null && filters.batchId.trim() !== '') {
@@ -121,13 +125,10 @@ export async function verifyStudent(
   id: string,
   input: StudentVerifyRequest
 ): Promise<StudentProfileResponse> {
-  return apiRequest<StudentProfileResponse>(
-    `/api/v1/students/${encodeURIComponent(id)}/verify`,
-    {
-      method: 'PATCH',
-      body: JSON.stringify(input),
-    }
-  );
+  return apiRequest<StudentProfileResponse>(`/api/v1/students/${encodeURIComponent(id)}/verify`, {
+    method: 'PATCH',
+    body: JSON.stringify(input),
+  });
 }
 
 /**
@@ -137,11 +138,8 @@ export async function updateStudentStatus(
   id: string,
   input: StudentStatusUpdateRequest
 ): Promise<StudentProfileResponse> {
-  return apiRequest<StudentProfileResponse>(
-    `/api/v1/students/${encodeURIComponent(id)}/status`,
-    {
-      method: 'PATCH',
-      body: JSON.stringify(input),
-    }
-  );
+  return apiRequest<StudentProfileResponse>(`/api/v1/students/${encodeURIComponent(id)}/status`, {
+    method: 'PATCH',
+    body: JSON.stringify(input),
+  });
 }

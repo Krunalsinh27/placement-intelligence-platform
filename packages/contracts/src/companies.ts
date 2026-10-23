@@ -105,7 +105,12 @@ export const CompanyLocationSchema = z.object({
   city: z.string().trim().max(100, 'City cannot exceed 100 characters').optional().nullable(),
   state: z.string().trim().max(100, 'State cannot exceed 100 characters').optional().nullable(),
   country: z.string().trim().max(100, 'Country cannot exceed 100 characters').optional().nullable(),
-  addressLine: z.string().trim().max(250, 'Address cannot exceed 250 characters').optional().nullable(),
+  addressLine: z
+    .string()
+    .trim()
+    .max(250, 'Address cannot exceed 250 characters')
+    .optional()
+    .nullable(),
 });
 export type CompanyLocation = z.infer<typeof CompanyLocationSchema>;
 
@@ -148,10 +153,7 @@ export const COMPANY_STATUS_TRANSITIONS: Record<CompanyStatus, readonly CompanyS
   blacklisted: ['pending_verification', 'inactive'],
 } as const;
 
-export function isValidCompanyStatusTransition(
-  from: CompanyStatus,
-  to: CompanyStatus
-): boolean {
+export function isValidCompanyStatusTransition(from: CompanyStatus, to: CompanyStatus): boolean {
   if (from === to) return false;
   return COMPANY_STATUS_TRANSITIONS[from]?.includes(to) ?? false;
 }
@@ -224,12 +226,7 @@ export const CompanyCreateSchema = z.object({
   tier: CompanyTierSchema.default('tier_3').optional(),
   location: CompanyLocationSchema.optional().nullable(),
   primaryContact: CompanyContactPersonSchema.optional().nullable(),
-  notes: z
-    .string()
-    .trim()
-    .max(1000, 'Notes cannot exceed 1000 characters')
-    .optional()
-    .nullable(),
+  notes: z.string().trim().max(1000, 'Notes cannot exceed 1000 characters').optional().nullable(),
 });
 export type CompanyCreateInput = z.infer<typeof CompanyCreateSchema>;
 
@@ -241,19 +238,11 @@ export type CompanyCreateInput = z.infer<typeof CompanyCreateSchema>;
 export const CompanyUpdateSchema = z
   .object({
     primaryContact: CompanyContactPersonSchema.optional().nullable(),
-    notes: z
-      .string()
-      .trim()
-      .max(1000, 'Notes cannot exceed 1000 characters')
-      .optional()
-      .nullable(),
+    notes: z.string().trim().max(1000, 'Notes cannot exceed 1000 characters').optional().nullable(),
   })
-  .refine(
-    (data) => data.primaryContact !== undefined || data.notes !== undefined,
-    {
-      message: 'At least one field must be provided for update',
-    }
-  );
+  .refine((data) => data.primaryContact !== undefined || data.notes !== undefined, {
+    message: 'At least one field must be provided for update',
+  });
 export type CompanyUpdateInput = z.infer<typeof CompanyUpdateSchema>;
 
 /**
@@ -393,10 +382,7 @@ export const RecruiterAcceptInviteRequestSchema = z.object({
     .trim()
     .min(16, 'Invitation token must be at least 16 characters')
     .max(128, 'Invitation token cannot exceed 128 characters'),
-  password: z
-    .string()
-    .min(8, 'Password must be at least 8 characters long')
-    .optional(),
+  password: z.string().min(8, 'Password must be at least 8 characters long').optional(),
 });
 export type RecruiterAcceptInviteRequest = z.infer<typeof RecruiterAcceptInviteRequestSchema>;
 
@@ -426,4 +412,3 @@ export const RecruiterInviteResponseDataSchema = z.object({
   invitationExpiresAt: z.string().datetime().optional(),
 });
 export type RecruiterInviteResponseData = z.infer<typeof RecruiterInviteResponseDataSchema>;
-

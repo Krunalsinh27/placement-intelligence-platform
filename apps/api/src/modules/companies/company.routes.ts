@@ -156,10 +156,7 @@ companyRouter.get(
     const requestId = crypto.randomUUID();
     try {
       const orgId = getTenantScope(req);
-      const company = await companyService.getCompanyById(
-        orgId,
-        req.params.id as string
-      );
+      const company = await companyService.getCompanyById(orgId, req.params.id as string);
 
       res.status(200).json({
         data: company,
@@ -206,16 +203,11 @@ companyRouter.put(
     const requestId = crypto.randomUUID();
     try {
       const orgId = getTenantScope(req);
-      const company = await companyService.updateCompany(
-        orgId,
-        req.params.id as string,
-        req.body,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const company = await companyService.updateCompany(orgId, req.params.id as string, req.body, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: company,
@@ -262,16 +254,11 @@ companyRouter.patch(
     const requestId = crypto.randomUUID();
     try {
       const orgId = getTenantScope(req);
-      const company = await companyService.verifyCompany(
-        orgId,
-        req.params.id as string,
-        req.body,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const company = await companyService.verifyCompany(orgId, req.params.id as string, req.body, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: company,
@@ -318,16 +305,11 @@ companyRouter.patch(
     const requestId = crypto.randomUUID();
     try {
       const orgId = getTenantScope(req);
-      const company = await companyService.updateTier(
-        orgId,
-        req.params.id as string,
-        req.body,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const company = await companyService.updateTier(orgId, req.params.id as string, req.body, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: company,

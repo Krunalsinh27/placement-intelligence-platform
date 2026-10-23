@@ -1,11 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  type ReactNode,
-} from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import type { AuthUser, LoginRequest } from '@placement-platform/contracts';
 import { getMe, login as apiLogin, logout as apiLogout, ApiError } from '../api/auth.js';
 

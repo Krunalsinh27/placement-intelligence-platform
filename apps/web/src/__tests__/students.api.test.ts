@@ -317,10 +317,7 @@ describe('Frontend Student API Client', () => {
         enrollmentNumber: 'TAMPERED',
       };
 
-      await updateStudent(
-        'student-1',
-        taintedUpdate as unknown as StudentProfileUpdateInput
-      );
+      await updateStudent('student-1', taintedUpdate as unknown as StudentProfileUpdateInput);
 
       const fetchCall = vi.mocked(globalThis.fetch).mock.calls[0]!;
       const parsedBody = JSON.parse(fetchCall[1]?.body as string);
@@ -480,7 +477,8 @@ describe('Frontend Student API Client', () => {
         json: async () => ({
           error: {
             code: 'DUPLICATE_RESOURCE',
-            message: 'Student profile with enrollment number EN2026001 already exists in this college.',
+            message:
+              'Student profile with enrollment number EN2026001 already exists in this college.',
           },
         }),
       } as Response);

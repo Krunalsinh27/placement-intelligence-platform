@@ -29,4 +29,3 @@ const OrganizationSchema = new Schema<IOrganization>(
 export const OrganizationModel: mongoose.Model<IOrganization> =
   (mongoose.models['Organization'] as mongoose.Model<IOrganization>) ||
   mongoose.model<IOrganization>('Organization', OrganizationSchema);
-

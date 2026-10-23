@@ -1,8 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import type {
-  CollegeCompanyProfileResponse,
-  CompanyStatus,
-} from '@placement-platform/contracts';
+import type { CollegeCompanyProfileResponse, CompanyStatus } from '@placement-platform/contracts';
 import { verifyCompany, ApiError } from '../../api/companies.js';
 
 interface CompanyVerifyModalProps {
@@ -40,7 +37,9 @@ export function CompanyVerifyModal({
       (targetStatus === 'blacklisted' || company.status === 'blacklisted') &&
       remarks.trim().length < 5
     ) {
-      setFormError('A meaningful remark (minimum 5 characters) is required for blacklist transitions.');
+      setFormError(
+        'A meaningful remark (minimum 5 characters) is required for blacklist transitions.'
+      );
       return;
     }
 
@@ -77,7 +76,10 @@ export function CompanyVerifyModal({
               Verification Status: {company.company.name}
             </h2>
             <p className="modal-subtitle">
-              Current status: <strong style={{ textTransform: 'capitalize' }}>{company.status.replace('_', ' ')}</strong>
+              Current status:{' '}
+              <strong style={{ textTransform: 'capitalize' }}>
+                {company.status.replace('_', ' ')}
+              </strong>
             </p>
           </div>
           <button

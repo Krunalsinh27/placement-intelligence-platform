@@ -55,13 +55,19 @@ export function StudentDetailModal({
 
   return (
     <>
-      <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="detail-modal-title">
+      <div
+        className="modal-backdrop"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="detail-modal-title"
+      >
         <div className="modal-card modal-large">
           <div className="modal-header">
             <div>
               <div className="detail-header-row">
                 <h2 className="modal-title" id="detail-modal-title">
-                  {currentStudent.personalDetails.firstName} {currentStudent.personalDetails.lastName}
+                  {currentStudent.personalDetails.firstName}{' '}
+                  {currentStudent.personalDetails.lastName}
                 </h2>
                 <span className="code-pill">{currentStudent.enrollmentNumber}</span>
                 <span
@@ -69,10 +75,10 @@ export function StudentDetailModal({
                     currentStudent.status === 'placed'
                       ? 'ok'
                       : currentStudent.status === 'unplaced'
-                      ? ''
-                      : currentStudent.status === 'opted_out'
-                      ? 'warning'
-                      : 'error'
+                        ? ''
+                        : currentStudent.status === 'opted_out'
+                          ? 'warning'
+                          : 'error'
                   }`}
                 >
                   <span className="status-dot" aria-hidden="true" />
@@ -176,7 +182,9 @@ export function StudentDetailModal({
                 <div className="metric-box">
                   <span
                     className={`metric-val ${
-                      currentStudent.academicRecords.activeBacklogs > 0 ? 'text-error' : 'text-success'
+                      currentStudent.academicRecords.activeBacklogs > 0
+                        ? 'text-error'
+                        : 'text-success'
                     }`}
                   >
                     {currentStudent.academicRecords.activeBacklogs}
@@ -238,9 +246,7 @@ export function StudentDetailModal({
                 <div className="info-row">
                   <span className="info-key">Batch</span>
                   <span className="info-val">
-                    {batch
-                      ? `${batch.name} (${batch.startYear}–${batch.graduationYear})`
-                      : '—'}
+                    {batch ? `${batch.name} (${batch.startYear}–${batch.graduationYear})` : '—'}
                   </span>
                 </div>
               </div>
@@ -273,16 +279,12 @@ export function StudentDetailModal({
                     <span>✅ Verified Academic Record</span>
                     <span className="audit-date">
                       {currentStudent.verificationDetails?.verifiedAt
-                        ? new Date(
-                            currentStudent.verificationDetails.verifiedAt
-                          ).toLocaleString()
+                        ? new Date(currentStudent.verificationDetails.verifiedAt).toLocaleString()
                         : ''}
                     </span>
                   </div>
                   {currentStudent.verificationDetails?.remarks && (
-                    <p className="audit-remarks">
-                      "{currentStudent.verificationDetails.remarks}"
-                    </p>
+                    <p className="audit-remarks">"{currentStudent.verificationDetails.remarks}"</p>
                   )}
                 </div>
               ) : (

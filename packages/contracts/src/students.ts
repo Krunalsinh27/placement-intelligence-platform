@@ -2,20 +2,10 @@ import { z } from 'zod';
 
 // ─── Enums & Sub-schemas ────────────────────────────────────────────────────
 
-export const StudentStatusSchema = z.enum([
-  'unplaced',
-  'placed',
-  'opted_out',
-  'blocked',
-]);
+export const StudentStatusSchema = z.enum(['unplaced', 'placed', 'opted_out', 'blocked']);
 export type StudentStatus = z.infer<typeof StudentStatusSchema>;
 
-export const StudentGenderSchema = z.enum([
-  'male',
-  'female',
-  'other',
-  'prefer_not_to_say',
-]);
+export const StudentGenderSchema = z.enum(['male', 'female', 'other', 'prefer_not_to_say']);
 export type StudentGender = z.infer<typeof StudentGenderSchema>;
 
 /**
@@ -71,10 +61,7 @@ export const StudentAcademicRecordsSchema = z.object({
     .max(100, 'Diploma percentage cannot exceed 100')
     .optional()
     .nullable(),
-  currentCgpa: z
-    .number()
-    .min(0, 'CGPA cannot be less than 0')
-    .max(10, 'CGPA cannot exceed 10'),
+  currentCgpa: z.number().min(0, 'CGPA cannot be less than 0').max(10, 'CGPA cannot exceed 10'),
   activeBacklogs: z
     .number()
     .int('Active backlogs must be an integer')
@@ -109,9 +96,7 @@ export const StudentProfileCreateSchema = z.object({
     .regex(/^[0-9a-fA-F]{24}$/, 'Invalid batch ID format'),
   personalDetails: StudentPersonalDetailsSchema,
   academicRecords: StudentAcademicRecordsSchema,
-  skills: z
-    .array(z.string().trim().min(1, 'Skill cannot be empty'))
-    .default([]),
+  skills: z.array(z.string().trim().min(1, 'Skill cannot be empty')).default([]),
 });
 export type StudentProfileCreateInput = z.infer<typeof StudentProfileCreateSchema>;
 
@@ -129,9 +114,7 @@ export const StudentProfileUpdateSchema = z
       .optional(),
     personalDetails: StudentPersonalDetailsSchema.partial().optional(),
     academicRecords: StudentAcademicRecordsSchema.partial().optional(),
-    skills: z
-      .array(z.string().trim().min(1, 'Skill cannot be empty'))
-      .optional(),
+    skills: z.array(z.string().trim().min(1, 'Skill cannot be empty')).optional(),
   })
   .refine(
     (data) =>
@@ -177,15 +160,12 @@ export const StudentQueryFiltersSchema = z.object({
   status: StudentStatusSchema.optional(),
   minCgpa: z.coerce.number().min(0).max(10).optional(),
   maxActiveBacklogs: z.coerce.number().int().min(0).optional(),
-  isVerified: z
-    .preprocess((val) => {
-      if (val === 'true' || val === true) return true;
-      if (val === 'false' || val === false) return false;
-      return undefined;
-    }, z.boolean().optional()),
-  sortBy: z
-    .enum(['name', 'enrollmentNumber', 'currentCgpa', 'createdAt'])
-    .default('createdAt'),
+  isVerified: z.preprocess((val) => {
+    if (val === 'true' || val === true) return true;
+    if (val === 'false' || val === false) return false;
+    return undefined;
+  }, z.boolean().optional()),
+  sortBy: z.enum(['name', 'enrollmentNumber', 'currentCgpa', 'createdAt']).default('createdAt'),
   sortOrder: z.enum(['asc', 'desc']).default('desc'),
 });
 export type StudentQueryFilters = z.infer<typeof StudentQueryFiltersSchema>;

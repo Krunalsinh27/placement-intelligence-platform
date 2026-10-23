@@ -84,11 +84,7 @@ studentRouter.get(
       const coordinatorDeptId =
         req.session?.role === 'dept_coordinator' ? req.session.departmentId : null;
 
-      const result = await studentService.listStudents(
-        orgId,
-        filters,
-        coordinatorDeptId
-      );
+      const result = await studentService.listStudents(orgId, filters, coordinatorDeptId);
 
       res.status(200).json({
         data: result,
@@ -187,16 +183,11 @@ studentRouter.put(
     const requestId = crypto.randomUUID();
     try {
       const orgId = getTenantScope(req);
-      const student = await studentService.updateStudent(
-        orgId,
-        req.params.id as string,
-        req.body,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const student = await studentService.updateStudent(orgId, req.params.id as string, req.body, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: student,
@@ -303,16 +294,11 @@ studentRouter.patch(
     const requestId = crypto.randomUUID();
     try {
       const orgId = getTenantScope(req);
-      const student = await studentService.updateStatus(
-        orgId,
-        req.params.id as string,
-        req.body,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const student = await studentService.updateStatus(orgId, req.params.id as string, req.body, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: student,

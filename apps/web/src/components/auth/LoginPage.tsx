@@ -58,9 +58,7 @@ export function LoginPage() {
 
         <div className="login-card-header">
           <h2 className="login-heading">Welcome back</h2>
-          <p className="login-instruction">
-            Sign in to manage collegiate placement operations
-          </p>
+          <p className="login-instruction">Sign in to manage collegiate placement operations</p>
         </div>
 
         {/* Global Error Banner */}
@@ -126,9 +124,7 @@ export function LoginPage() {
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
                 autoComplete="current-password"
-                className={`form-input password-input${
-                  fieldErrors.password ? ' input-error' : ''
-                }`}
+                className={`form-input password-input${fieldErrors.password ? ' input-error' : ''}`}
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => {
@@ -180,11 +176,7 @@ export function LoginPage() {
           <div className="demo-credentials-box">
             <div className="demo-credentials-header">
               <span className="demo-tag">Development Helper</span>
-              <button
-                type="button"
-                className="demo-autofill-btn"
-                onClick={handleFillDemo}
-              >
+              <button type="button" className="demo-autofill-btn" onClick={handleFillDemo}>
                 Auto-fill Demo TPO
               </button>
             </div>

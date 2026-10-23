@@ -119,7 +119,12 @@ export function StudentCreateModal({
   };
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="create-student-title">
+    <div
+      className="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="create-student-title"
+    >
       <div className="modal-card modal-large">
         <div className="modal-header">
           <div>
@@ -172,7 +177,9 @@ export function StudentCreateModal({
                   required
                 />
                 {fieldErrors.enrollmentNumber && (
-                  <span className="form-field-error" role="alert">{fieldErrors.enrollmentNumber}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors.enrollmentNumber}
+                  </span>
                 )}
               </div>
 
@@ -195,7 +202,9 @@ export function StudentCreateModal({
                   ))}
                 </select>
                 {fieldErrors.departmentId && (
-                  <span className="form-field-error" role="alert">{fieldErrors.departmentId}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors.departmentId}
+                  </span>
                 )}
               </div>
 
@@ -218,7 +227,9 @@ export function StudentCreateModal({
                   ))}
                 </select>
                 {fieldErrors.batchId && (
-                  <span className="form-field-error" role="alert">{fieldErrors.batchId}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors.batchId}
+                  </span>
                 )}
               </div>
             </div>
@@ -241,7 +252,9 @@ export function StudentCreateModal({
                   required
                 />
                 {fieldErrors['personalDetails.firstName'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.firstName']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.firstName']}
+                  </span>
                 )}
               </div>
 
@@ -260,7 +273,9 @@ export function StudentCreateModal({
                   required
                 />
                 {fieldErrors['personalDetails.lastName'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.lastName']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.lastName']}
+                  </span>
                 )}
               </div>
             </div>
@@ -281,7 +296,9 @@ export function StudentCreateModal({
                   required
                 />
                 {fieldErrors['personalDetails.email'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.email']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.email']}
+                  </span>
                 )}
               </div>
 
@@ -300,7 +317,9 @@ export function StudentCreateModal({
                   required
                 />
                 {fieldErrors['personalDetails.phone'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.phone']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.phone']}
+                  </span>
                 )}
               </div>
 
@@ -357,7 +376,9 @@ export function StudentCreateModal({
                   required
                 />
                 {fieldErrors['academicRecords.currentCgpa'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['academicRecords.currentCgpa']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['academicRecords.currentCgpa']}
+                  </span>
                 )}
               </div>
 
@@ -378,7 +399,9 @@ export function StudentCreateModal({
                   required
                 />
                 {fieldErrors['academicRecords.tenthPercentage'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['academicRecords.tenthPercentage']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['academicRecords.tenthPercentage']}
+                  </span>
                 )}
               </div>
 
@@ -481,7 +504,9 @@ export function StudentCreateModal({
                 onChange={(e) => setSkillsRaw(e.target.value)}
                 disabled={isSubmitting}
               />
-              <span className="form-field-hint">Enter comma-separated technical proficiencies.</span>
+              <span className="form-field-hint">
+                Enter comma-separated technical proficiencies.
+              </span>
             </div>
           </div>
 

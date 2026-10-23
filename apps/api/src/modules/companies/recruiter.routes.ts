@@ -7,11 +7,7 @@ import {
   RecruiterQueryFiltersSchema,
 } from '@placement-platform/contracts';
 import { recruiterService, RecruiterError } from './recruiter.service.js';
-import {
-  requireAuth,
-  requireRole,
-  optionalAuth,
-} from '../../middlewares/auth.js';
+import { requireAuth, requireRole, optionalAuth } from '../../middlewares/auth.js';
 import { csrfProtection } from '../../middlewares/csrf.js';
 import { validateBody } from '../../middlewares/validate.js';
 
@@ -39,16 +35,11 @@ recruiterRouter.post(
         email: req.session?.user.email,
       };
 
-      const result = await recruiterService.inviteRecruiter(
-        companyId,
-        caller,
-        req.body,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const result = await recruiterService.inviteRecruiter(companyId, caller, req.body, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(201).json({
         data: result,
@@ -101,15 +92,11 @@ recruiterRouter.post(
           }
         : null;
 
-      const result = await recruiterService.acceptInvitation(
-        req.body,
-        authenticatedUser,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const result = await recruiterService.acceptInvitation(req.body, authenticatedUser, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: result,
@@ -185,11 +172,7 @@ recruiterRouter.get(
         return;
       }
 
-      const result = await recruiterService.listRecruiters(
-        companyId,
-        caller,
-        parsedFilters.data
-      );
+      const result = await recruiterService.listRecruiters(companyId, caller, parsedFilters.data);
 
       res.status(200).json({
         data: result,
@@ -243,16 +226,11 @@ recruiterRouter.post(
         email: req.session?.user.email,
       };
 
-      const result = await recruiterService.resendInvitation(
-        companyId,
-        recruiterId,
-        caller,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const result = await recruiterService.resendInvitation(companyId, recruiterId, caller, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: result,
@@ -306,16 +284,11 @@ recruiterRouter.post(
         email: req.session?.user.email,
       };
 
-      const result = await recruiterService.revokeInvitation(
-        companyId,
-        recruiterId,
-        caller,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const result = await recruiterService.revokeInvitation(companyId, recruiterId, caller, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: result,
@@ -369,16 +342,11 @@ recruiterRouter.post(
         email: req.session?.user.email,
       };
 
-      const result = await recruiterService.deactivateRecruiter(
-        companyId,
-        recruiterId,
-        caller,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const result = await recruiterService.deactivateRecruiter(companyId, recruiterId, caller, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: result,

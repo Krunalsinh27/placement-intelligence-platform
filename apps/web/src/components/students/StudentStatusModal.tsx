@@ -46,7 +46,12 @@ export function StudentStatusModal({
   };
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="status-modal-title">
+    <div
+      className="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="status-modal-title"
+    >
       <div className="modal-card">
         <div className="modal-header">
           <div>

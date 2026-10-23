@@ -10,10 +10,7 @@ import type {
 import { listStudents, ApiError } from '../../api/students.js';
 import { listDepartments, listBatches } from '../../api/academics.js';
 import { useAuth } from '../../context/AuthContext.js';
-import {
-  canCreateOrEditStudents,
-  isCoordinatorScoped,
-} from '../../utils/permissions.js';
+import { canCreateOrEditStudents, isCoordinatorScoped } from '../../utils/permissions.js';
 import { StudentDetailModal } from './StudentDetailModal.js';
 import { StudentCreateModal } from './StudentCreateModal.js';
 
@@ -101,7 +98,19 @@ export function StudentManagement() {
     } finally {
       setLoading(false);
     }
-  }, [page, limit, search, departmentId, batchId, status, isVerified, minCgpa, maxActiveBacklogs, sortBy, sortOrder]);
+  }, [
+    page,
+    limit,
+    search,
+    departmentId,
+    batchId,
+    status,
+    isVerified,
+    minCgpa,
+    maxActiveBacklogs,
+    sortBy,
+    sortOrder,
+  ]);
 
   useEffect(() => {
     void fetchStudents();
@@ -161,7 +170,9 @@ export function StudentManagement() {
       {/* Coordinator Scope Indicator */}
       {isCoordinator && (
         <div className="scope-banner" role="status" id="coordinator-scope-banner">
-          <span className="scope-icon" aria-hidden="true">🛡️</span>
+          <span className="scope-icon" aria-hidden="true">
+            🛡️
+          </span>
           <div>
             <strong>Department Coordinator Scope Active:</strong> Displaying only students
             registered in your assigned department. You have authorization to inspect records and
@@ -179,7 +190,9 @@ export function StudentManagement() {
               Search Directory
             </label>
             <div className="search-input-wrap">
-              <span className="search-icon" aria-hidden="true">🔍</span>
+              <span className="search-icon" aria-hidden="true">
+                🔍
+              </span>
               <input
                 id="filter-search"
                 type="text"
@@ -336,7 +349,7 @@ export function StudentManagement() {
               onChange={(e) => {
                 const [sb, so] = e.target.value.split('-') as [
                   StudentQueryFilters['sortBy'],
-                  StudentQueryFilters['sortOrder']
+                  StudentQueryFilters['sortOrder'],
                 ];
                 setSortBy(sb);
                 setSortOrder(so);
@@ -382,7 +395,9 @@ export function StudentManagement() {
           </div>
         ) : !data || data.items.length === 0 ? (
           <div className="empty-state-card">
-            <div className="empty-state-icon" aria-hidden="true">🎓</div>
+            <div className="empty-state-icon" aria-hidden="true">
+              🎓
+            </div>
             <h3 className="empty-state-title">No Students Found</h3>
             <p className="empty-state-desc">
               No student profiles match your search criteria. Try adjusting or resetting your
@@ -426,7 +441,9 @@ export function StudentManagement() {
                       </td>
                       <td>
                         <div className="dept-batch-col">
-                          <span className="dept-tag">{getDepartmentName(student.departmentId)}</span>
+                          <span className="dept-tag">
+                            {getDepartmentName(student.departmentId)}
+                          </span>
                           <span className="batch-tag">{getBatchName(student.batchId)}</span>
                         </div>
                       </td>
@@ -461,10 +478,10 @@ export function StudentManagement() {
                             student.status === 'placed'
                               ? 'ok'
                               : student.status === 'unplaced'
-                              ? ''
-                              : student.status === 'opted_out'
-                              ? 'warning'
-                              : 'error'
+                                ? ''
+                                : student.status === 'opted_out'
+                                  ? 'warning'
+                                  : 'error'
                           }`}
                         >
                           <span className="status-dot" aria-hidden="true" />

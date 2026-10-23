@@ -58,4 +58,3 @@ const SessionSchema = new Schema<ISession>(
 export const SessionModel: mongoose.Model<ISession> =
   (mongoose.models['Session'] as mongoose.Model<ISession>) ||
   mongoose.model<ISession>('Session', SessionSchema);
-

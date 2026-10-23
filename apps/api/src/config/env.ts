@@ -53,9 +53,7 @@ const baseEnvSchema = z.object({
       'SESSION_SECRET must be at least 32 characters long for cryptographic security (ADR 0003)'
     )
     .optional(),
-  LOG_LEVEL: z
-    .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace'])
-    .default('info'),
+  LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']).default('info'),
 });
 
 export const envSchema = baseEnvSchema

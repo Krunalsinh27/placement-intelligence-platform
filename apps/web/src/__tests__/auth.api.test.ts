@@ -58,9 +58,7 @@ describe('Frontend Auth API Client', () => {
         }),
       } as Response);
 
-      await expect(
-        login({ email: 'tpo@college.edu', password: 'WrongPassword!' })
-      ).rejects.toThrow(
+      await expect(login({ email: 'tpo@college.edu', password: 'WrongPassword!' })).rejects.toThrow(
         'Invalid email or password. Please check your credentials and try again.'
       );
     });
@@ -78,17 +76,17 @@ describe('Frontend Auth API Client', () => {
         }),
       } as Response);
 
-      await expect(
-        login({ email: 'tpo@college.edu', password: 'Password123!' })
-      ).rejects.toThrow('Too many login attempts. Please wait 15 minutes before trying again.');
+      await expect(login({ email: 'tpo@college.edu', password: 'Password123!' })).rejects.toThrow(
+        'Too many login attempts. Please wait 15 minutes before trying again.'
+      );
     });
 
     it('handles network failure with a friendly NETWORK_ERROR message', async () => {
       vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('Failed to fetch'));
 
-      await expect(
-        login({ email: 'tpo@college.edu', password: 'Password123!' })
-      ).rejects.toThrow('Unable to connect to the API server.');
+      await expect(login({ email: 'tpo@college.edu', password: 'Password123!' })).rejects.toThrow(
+        'Unable to connect to the API server.'
+      );
     });
   });
 

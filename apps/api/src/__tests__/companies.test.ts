@@ -136,9 +136,7 @@ describe('Company Management Backend (Phase 6, Step 2)', () => {
 
   describe('Authentication & Role Guards', () => {
     it('returns 401 UNAUTHENTICATED when accessing endpoints without session', async () => {
-      const resPost = await request(app)
-        .post('/api/v1/companies')
-        .send(baseCompanyInput);
+      const resPost = await request(app).post('/api/v1/companies').send(baseCompanyInput);
       expect(resPost.status).toBe(401);
       expect(resPost.body.error.code).toBe('UNAUTHENTICATED');
 
@@ -301,7 +299,9 @@ describe('Company Management Backend (Phase 6, Step 2)', () => {
       const existingCollegeProf = mockCollegeProfile(existingGlobalComp);
 
       vi.spyOn(CompanyModel, 'findOne').mockResolvedValue(existingGlobalComp as never);
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue(existingCollegeProf as never);
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue(
+        existingCollegeProf as never
+      );
 
       const res = await request(app)
         .post('/api/v1/companies')
@@ -392,7 +392,9 @@ describe('Company Management Backend (Phase 6, Step 2)', () => {
       const globalCompNoWeb = mockGlobalCompany({ website: null });
       const collegeProf = mockCollegeProfile(globalCompNoWeb);
 
-      const createSpy = vi.spyOn(CompanyModel, 'create').mockResolvedValue(globalCompNoWeb as never);
+      const createSpy = vi
+        .spyOn(CompanyModel, 'create')
+        .mockResolvedValue(globalCompNoWeb as never);
       vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockResolvedValue(null);
       vi.spyOn(CollegeCompanyProfileModel, 'create').mockResolvedValue(collegeProf as never);
 
@@ -626,7 +628,11 @@ describe('Company Management Backend (Phase 6, Step 2)', () => {
         expect.arrayContaining([
           expect.objectContaining({ $match: expect.objectContaining({ orgId: collegeAOrgId }) }),
           expect.objectContaining({
-            $lookup: expect.objectContaining({ from: 'companies', localField: 'companyId', foreignField: '_id' }),
+            $lookup: expect.objectContaining({
+              from: 'companies',
+              localField: 'companyId',
+              foreignField: '_id',
+            }),
           }),
           expect.objectContaining({ $unwind: '$companyDoc' }),
           expect.objectContaining({ $sort: expect.objectContaining({ 'companyDoc.name': 1 }) }),
@@ -1085,7 +1091,9 @@ describe('Company Management Backend (Phase 6, Step 2)', () => {
       const targetCompanyProfileId = new mongoose.Types.ObjectId();
 
       // College A has this company, but College B's query includes orgId: collegeBOrgId
-      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockImplementation(((filter: Record<string, unknown>) => {
+      vi.spyOn(CollegeCompanyProfileModel, 'findOne').mockImplementation(((
+        filter: Record<string, unknown>
+      ) => {
         if (filter.orgId?.toString() === collegeBOrgId.toString()) {
           return Promise.resolve(null); // Tenant scoping prevents match!
         }

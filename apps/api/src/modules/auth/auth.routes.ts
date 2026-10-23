@@ -118,24 +118,20 @@ authRouter.post(
  * GET /api/v1/auth/me
  * Retrieves the currently authenticated user's profile and active role.
  */
-authRouter.get(
-  '/auth/me',
-  requireAuth,
-  (req: Request, res: Response): void => {
-    res.status(200).json({
-      data: {
-        user: {
-          id: req.session!.userId,
-          email: req.session!.user.email,
-          fullName: req.session!.user.fullName,
-          activeOrgId: req.session!.orgId,
-          role: req.session!.role,
-        },
+authRouter.get('/auth/me', requireAuth, (req: Request, res: Response): void => {
+  res.status(200).json({
+    data: {
+      user: {
+        id: req.session!.userId,
+        email: req.session!.user.email,
+        fullName: req.session!.user.fullName,
+        activeOrgId: req.session!.orgId,
+        role: req.session!.role,
       },
-      meta: {
-        requestId: crypto.randomUUID(),
-        timestamp: new Date().toISOString(),
-      },
-    });
-  }
-);
+    },
+    meta: {
+      requestId: crypto.randomUUID(),
+      timestamp: new Date().toISOString(),
+    },
+  });
+});

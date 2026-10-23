@@ -1,8 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import type {
-  CollegeCompanyProfileResponse,
-  CompanyTier,
-} from '@placement-platform/contracts';
+import type { CollegeCompanyProfileResponse, CompanyTier } from '@placement-platform/contracts';
 import { updateCompanyTier, ApiError } from '../../api/companies.js';
 
 interface CompanyTierModalProps {
@@ -12,12 +9,7 @@ interface CompanyTierModalProps {
   onSuccess: (updated: CollegeCompanyProfileResponse) => void;
 }
 
-export function CompanyTierModal({
-  isOpen,
-  company,
-  onClose,
-  onSuccess,
-}: CompanyTierModalProps) {
+export function CompanyTierModal({ isOpen, company, onClose, onSuccess }: CompanyTierModalProps) {
   if (!isOpen || !company) return null;
 
   const [targetTier, setTargetTier] = useState<CompanyTier>(company.tier);
@@ -72,7 +64,10 @@ export function CompanyTierModal({
               Update Tier: {company.company.name}
             </h2>
             <p className="modal-subtitle">
-              Current tier: <strong style={{ textTransform: 'capitalize' }}>{company.tier.replace('_', ' ')}</strong>
+              Current tier:{' '}
+              <strong style={{ textTransform: 'capitalize' }}>
+                {company.tier.replace('_', ' ')}
+              </strong>
             </p>
           </div>
           <button

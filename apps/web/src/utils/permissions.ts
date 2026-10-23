@@ -98,4 +98,3 @@ export function canVerifyOrTierCompany(role?: UserRole): boolean {
 export function canManageRecruiters(role?: UserRole): boolean {
   return role === 'college_admin' || role === 'tpo' || role === 'company_admin';
 }
-

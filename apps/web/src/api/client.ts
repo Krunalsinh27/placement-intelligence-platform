@@ -33,10 +33,7 @@ export const API_BASE_URL = ''; // Proxied via Vite to http://localhost:4000 in 
  * Standard typed HTTP fetch wrapper for PlacePilot frontend API clients.
  * Automatically enforces credentials: 'include', JSON headers, and error parsing.
  */
-export async function apiRequest<T>(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<T> {
+export async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   let res: Response;
   try {
     res = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -63,8 +60,7 @@ export async function apiRequest<T>(
       // Non-JSON response (e.g., gateway 502/504)
     }
 
-    const code =
-      payload?.error?.code ?? (res.status === 401 ? 'UNAUTHORIZED' : 'UNKNOWN_ERROR');
+    const code = payload?.error?.code ?? (res.status === 401 ? 'UNAUTHORIZED' : 'UNKNOWN_ERROR');
     const message = payload?.error?.message ?? `Request failed with status ${res.status}`;
     const details = payload?.error?.details;
 

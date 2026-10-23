@@ -137,7 +137,12 @@ export function StudentEditModal({
   };
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="edit-student-title">
+    <div
+      className="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="edit-student-title"
+    >
       <div className="modal-card modal-large">
         <div className="modal-header">
           <div>
@@ -232,7 +237,9 @@ export function StudentEditModal({
                   required
                 />
                 {fieldErrors['personalDetails.firstName'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.firstName']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.firstName']}
+                  </span>
                 )}
               </div>
 
@@ -250,7 +257,9 @@ export function StudentEditModal({
                   required
                 />
                 {fieldErrors['personalDetails.lastName'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.lastName']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.lastName']}
+                  </span>
                 )}
               </div>
             </div>
@@ -270,7 +279,9 @@ export function StudentEditModal({
                   required
                 />
                 {fieldErrors['personalDetails.email'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.email']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.email']}
+                  </span>
                 )}
               </div>
 
@@ -288,7 +299,9 @@ export function StudentEditModal({
                   required
                 />
                 {fieldErrors['personalDetails.phone'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['personalDetails.phone']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['personalDetails.phone']}
+                  </span>
                 )}
               </div>
 
@@ -345,7 +358,9 @@ export function StudentEditModal({
                   required
                 />
                 {fieldErrors['academicRecords.currentCgpa'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['academicRecords.currentCgpa']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['academicRecords.currentCgpa']}
+                  </span>
                 )}
               </div>
 
@@ -366,7 +381,9 @@ export function StudentEditModal({
                   required
                 />
                 {fieldErrors['academicRecords.tenthPercentage'] && (
-                  <span className="form-field-error" role="alert">{fieldErrors['academicRecords.tenthPercentage']}</span>
+                  <span className="form-field-error" role="alert">
+                    {fieldErrors['academicRecords.tenthPercentage']}
+                  </span>
                 )}
               </div>
 

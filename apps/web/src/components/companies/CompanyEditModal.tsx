@@ -9,12 +9,7 @@ interface CompanyEditModalProps {
   onSuccess: (updated: CollegeCompanyProfileResponse) => void;
 }
 
-export function CompanyEditModal({
-  isOpen,
-  company,
-  onClose,
-  onSuccess,
-}: CompanyEditModalProps) {
+export function CompanyEditModal({ isOpen, company, onClose, onSuccess }: CompanyEditModalProps) {
   if (!isOpen || !company) return null;
 
   const [name, setName] = useState(company.primaryContact?.name ?? '');

@@ -80,7 +80,4 @@ CollegeCompanyProfileSchema.index({ orgId: 1, createdAt: -1 });
 
 export const CollegeCompanyProfileModel: mongoose.Model<ICollegeCompanyProfile> =
   (mongoose.models['CollegeCompanyProfile'] as mongoose.Model<ICollegeCompanyProfile>) ||
-  mongoose.model<ICollegeCompanyProfile>(
-    'CollegeCompanyProfile',
-    CollegeCompanyProfileSchema
-  );
+  mongoose.model<ICollegeCompanyProfile>('CollegeCompanyProfile', CollegeCompanyProfileSchema);

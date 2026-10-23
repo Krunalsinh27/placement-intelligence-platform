@@ -138,19 +138,25 @@ export function CompanyDetailModal({
             }}
           >
             <div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+              <span
+                style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+              >
                 Legal Name
               </span>
               <strong>{master.legalName || '—'}</strong>
             </div>
             <div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+              <span
+                style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+              >
                 Industry
               </span>
               <strong>{master.industry}</strong>
             </div>
             <div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+              <span
+                style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+              >
                 Location
               </span>
               <strong>
@@ -161,7 +167,9 @@ export function CompanyDetailModal({
             </div>
             {master.description && (
               <div style={{ gridColumn: '1 / -1' }}>
-                <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+                <span
+                  style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+                >
                   Description
                 </span>
                 <p style={{ marginTop: '4px', lineHeight: 1.5, color: 'var(--color-text)' }}>
@@ -187,32 +195,42 @@ export function CompanyDetailModal({
             }}
           >
             <div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+              <span
+                style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+              >
                 Contact Name
               </span>
               <strong>{company.primaryContact?.name || '—'}</strong>
             </div>
             <div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+              <span
+                style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+              >
                 Contact Email
               </span>
               <strong>{company.primaryContact?.email || '—'}</strong>
             </div>
             <div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+              <span
+                style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+              >
                 Contact Phone
               </span>
               <strong>{company.primaryContact?.phone || '—'}</strong>
             </div>
             <div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+              <span
+                style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+              >
                 Designation
               </span>
               <strong>{company.primaryContact?.designation || '—'}</strong>
             </div>
             {company.notes && (
               <div style={{ gridColumn: '1 / -1', marginTop: '4px' }}>
-                <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+                <span
+                  style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}
+                >
                   College Notes
                 </span>
                 <p style={{ marginTop: '4px', lineHeight: 1.5, color: 'var(--color-text)' }}>
@@ -248,10 +266,18 @@ export function CompanyDetailModal({
                 )}
                 {company.verificationDetails.remarks && (
                   <div>
-                    <span style={{ color: 'var(--color-text-muted)', fontSize: '11px', display: 'block' }}>
+                    <span
+                      style={{
+                        color: 'var(--color-text-muted)',
+                        fontSize: '11px',
+                        display: 'block',
+                      }}
+                    >
                       Remarks:
                     </span>
-                    <p style={{ marginTop: '4px', fontStyle: 'italic', color: 'var(--color-text)' }}>
+                    <p
+                      style={{ marginTop: '4px', fontStyle: 'italic', color: 'var(--color-text)' }}
+                    >
                       "{company.verificationDetails.remarks}"
                     </p>
                   </div>

@@ -8,10 +8,7 @@ import type {
 } from '@placement-platform/contracts';
 import { listCompanies, ApiError } from '../../api/companies.js';
 import { useAuth } from '../../context/AuthContext.js';
-import {
-  canManageCompanies,
-  canVerifyOrTierCompany,
-} from '../../utils/permissions.js';
+import { canManageCompanies, canVerifyOrTierCompany } from '../../utils/permissions.js';
 import { CompanyCreateModal } from './CompanyCreateModal.js';
 import { CompanyEditModal } from './CompanyEditModal.js';
 import { CompanyVerifyModal } from './CompanyVerifyModal.js';
@@ -40,7 +37,9 @@ export function CompanyManagement() {
 
   // Modal states
   const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState<CollegeCompanyProfileResponse | null>(null);
+  const [selectedCompany, setSelectedCompany] = useState<CollegeCompanyProfileResponse | null>(
+    null
+  );
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [verifyModalOpen, setVerifyModalOpen] = useState(false);
@@ -176,7 +175,11 @@ export function CompanyManagement() {
 
           {/* Status Filter */}
           <div className="form-group" style={{ margin: 0 }}>
-            <label htmlFor="company-status-filter" className="form-label" style={{ fontSize: '12px' }}>
+            <label
+              htmlFor="company-status-filter"
+              className="form-label"
+              style={{ fontSize: '12px' }}
+            >
               Verification Status
             </label>
             <select
@@ -198,7 +201,11 @@ export function CompanyManagement() {
 
           {/* Tier Filter */}
           <div className="form-group" style={{ margin: 0 }}>
-            <label htmlFor="company-tier-filter" className="form-label" style={{ fontSize: '12px' }}>
+            <label
+              htmlFor="company-tier-filter"
+              className="form-label"
+              style={{ fontSize: '12px' }}
+            >
               Recruiter Tier
             </label>
             <select
@@ -289,11 +296,7 @@ export function CompanyManagement() {
               : 'Register your first partner company to start tracking recruiter relationships and hosting campus placement drives.'}
           </p>
           {canManage && (
-            <button
-              type="button"
-              className="btn-primary"
-              onClick={() => setCreateModalOpen(true)}
-            >
+            <button type="button" className="btn-primary" onClick={() => setCreateModalOpen(true)}>
               + Register Company
             </button>
           )}

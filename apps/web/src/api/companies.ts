@@ -39,7 +39,11 @@ export function buildCompanyQueryString(filters?: Partial<CompanyQueryFilters>):
   if (filters.tier !== undefined && filters.tier !== null) {
     params.set('tier', filters.tier);
   }
-  if (filters.industry !== undefined && filters.industry !== null && filters.industry.trim() !== '') {
+  if (
+    filters.industry !== undefined &&
+    filters.industry !== null &&
+    filters.industry.trim() !== ''
+  ) {
     params.set('industry', filters.industry.trim());
   }
   if (filters.sortBy !== undefined && filters.sortBy !== null) {
@@ -125,13 +129,10 @@ export async function updateCompany(
   id: string,
   input: CompanyUpdateInput
 ): Promise<CollegeCompanyProfileResponse> {
-  return apiRequest<CollegeCompanyProfileResponse>(
-    `/api/v1/companies/${encodeURIComponent(id)}`,
-    {
-      method: 'PUT',
-      body: JSON.stringify(input),
-    }
-  );
+  return apiRequest<CollegeCompanyProfileResponse>(`/api/v1/companies/${encodeURIComponent(id)}`, {
+    method: 'PUT',
+    body: JSON.stringify(input),
+  });
 }
 
 /**

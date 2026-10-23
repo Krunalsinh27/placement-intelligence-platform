@@ -14,12 +14,7 @@ interface DepartmentModalProps {
   onSuccess: (dept: DepartmentResponse) => void;
 }
 
-export function DepartmentModal({
-  department,
-  isOpen,
-  onClose,
-  onSuccess,
-}: DepartmentModalProps) {
+export function DepartmentModal({ department, isOpen, onClose, onSuccess }: DepartmentModalProps) {
   const isEdit = Boolean(department);
 
   const [name, setName] = useState(department?.name ?? '');
@@ -104,7 +99,12 @@ export function DepartmentModal({
   };
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="dept-modal-title">
+    <div
+      className="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dept-modal-title"
+    >
       <div className="modal-card">
         <div className="modal-header">
           <div>

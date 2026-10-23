@@ -139,15 +139,15 @@ pnpm --filter @placement-platform/api test
 
 ## Current Status (Phase 1)
 
-| Feature | Status |
-|---|---|
-| Express API server | ✅ Done |
-| `GET /api/v1/health` endpoint | ✅ Done |
-| React + Vite frontend | ✅ Done |
-| Dashboard shell + sidebar | ✅ Done |
-| Backend connection indicator | ✅ Done |
-| Placeholder metric cards | ✅ Done |
-| Health endpoint tests (vitest) | ✅ Done |
-| MongoDB connection | ⏳ Phase 2 |
-| Authentication | ⏳ Phase 2 |
-| Business workflows | ⏳ Future |
+| Feature                        | Status     |
+| ------------------------------ | ---------- |
+| Express API server             | ✅ Done    |
+| `GET /api/v1/health` endpoint  | ✅ Done    |
+| React + Vite frontend          | ✅ Done    |
+| Dashboard shell + sidebar      | ✅ Done    |
+| Backend connection indicator   | ✅ Done    |
+| Placeholder metric cards       | ✅ Done    |
+| Health endpoint tests (vitest) | ✅ Done    |
+| MongoDB connection             | ⏳ Phase 2 |
+| Authentication                 | ⏳ Phase 2 |
+| Business workflows             | ⏳ Future  |

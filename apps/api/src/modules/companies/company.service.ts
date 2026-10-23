@@ -125,8 +125,7 @@ export class CompanyService {
 
     if (company) {
       // Conflict detection: verify that submitted core details do not contradict the existing company
-      const nameConflict =
-        input.name.trim().toLowerCase() !== company.name.trim().toLowerCase();
+      const nameConflict = input.name.trim().toLowerCase() !== company.name.trim().toLowerCase();
       const industryConflict =
         input.industry.trim().toLowerCase() !== company.industry.trim().toLowerCase();
 
@@ -368,10 +367,7 @@ export class CompanyService {
   /**
    * Retrieves a single college company profile by its ID.
    */
-  async getCompanyById(
-    orgId: string,
-    id: string
-  ): Promise<CollegeCompanyProfileResponse> {
+  async getCompanyById(orgId: string, id: string): Promise<CollegeCompanyProfileResponse> {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new CompanyError('Invalid company ID format.', 'INVALID_ID', 400);
     }

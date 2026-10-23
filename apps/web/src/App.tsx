@@ -99,7 +99,9 @@ function Sidebar({ activeView, onSelectView, userRole }: SidebarProps) {
             onClick={() => onSelectView('dashboard')}
             aria-current={activeView === 'dashboard' ? 'page' : undefined}
           >
-            <span className="nav-item-icon" aria-hidden="true">🏠</span>
+            <span className="nav-item-icon" aria-hidden="true">
+              🏠
+            </span>
             Dashboard
           </button>
         </div>
@@ -114,7 +116,9 @@ function Sidebar({ activeView, onSelectView, userRole }: SidebarProps) {
               onClick={() => onSelectView('students')}
               aria-current={activeView === 'students' ? 'page' : undefined}
             >
-              <span className="nav-item-icon" aria-hidden="true">🎓</span>
+              <span className="nav-item-icon" aria-hidden="true">
+                🎓
+              </span>
               Students
             </button>
           )}
@@ -126,17 +130,16 @@ function Sidebar({ activeView, onSelectView, userRole }: SidebarProps) {
               onClick={() => onSelectView('companies')}
               aria-current={activeView === 'companies' ? 'page' : undefined}
             >
-              <span className="nav-item-icon" aria-hidden="true">🏢</span>
+              <span className="nav-item-icon" aria-hidden="true">
+                🏢
+              </span>
               Companies
             </button>
           ) : (
-            <button
-              type="button"
-              className="nav-item"
-              id="nav-companies"
-              disabled
-            >
-              <span className="nav-item-icon" aria-hidden="true">🏢</span>
+            <button type="button" className="nav-item" id="nav-companies" disabled>
+              <span className="nav-item-icon" aria-hidden="true">
+                🏢
+              </span>
               Companies
             </button>
           )}
@@ -152,7 +155,9 @@ function Sidebar({ activeView, onSelectView, userRole }: SidebarProps) {
               onClick={() => onSelectView('academics')}
               aria-current={activeView === 'academics' ? 'page' : undefined}
             >
-              <span className="nav-item-icon" aria-hidden="true">🏛️</span>
+              <span className="nav-item-icon" aria-hidden="true">
+                🏛️
+              </span>
               Academic Structure
             </button>
           </div>
@@ -161,12 +166,16 @@ function Sidebar({ activeView, onSelectView, userRole }: SidebarProps) {
         <div>
           <div className="nav-section-label">Operations</div>
           <button type="button" className="nav-item" id="nav-placement-drives" disabled>
-            <span className="nav-item-icon" aria-hidden="true">📋</span>
+            <span className="nav-item-icon" aria-hidden="true">
+              📋
+            </span>
             Placement Drives
             <span className="nav-item-badge">Soon</span>
           </button>
           <button type="button" className="nav-item" id="nav-applications" disabled>
-            <span className="nav-item-icon" aria-hidden="true">📄</span>
+            <span className="nav-item-icon" aria-hidden="true">
+              📄
+            </span>
             Applications
             <span className="nav-item-badge">Soon</span>
           </button>
@@ -175,7 +184,9 @@ function Sidebar({ activeView, onSelectView, userRole }: SidebarProps) {
         <div>
           <div className="nav-section-label">System</div>
           <button type="button" className="nav-item" id="nav-settings" disabled>
-            <span className="nav-item-icon" aria-hidden="true">⚙️</span>
+            <span className="nav-item-icon" aria-hidden="true">
+              ⚙️
+            </span>
             Settings
             <span className="nav-item-badge">Soon</span>
           </button>
@@ -205,10 +216,7 @@ function StatusPill({ status }: { status: BackendStatus }) {
       aria-live="polite"
       id="backend-status-indicator"
     >
-      <span
-        className={`status-dot${status === 'loading' ? ' pulse' : ''}`}
-        aria-hidden="true"
-      />
+      <span className={`status-dot${status === 'loading' ? ' pulse' : ''}`} aria-hidden="true" />
       {labels[status]}
     </div>
   );
@@ -225,10 +233,7 @@ interface PlaceholderCardProps {
 
 function PlaceholderCard({ icon, color, title, description }: PlaceholderCardProps) {
   return (
-    <article
-      className="placeholder-card"
-      id={`card-${title.toLowerCase().replace(/\s+/g, '-')}`}
-    >
+    <article className="placeholder-card" id={`card-${title.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="card-header">
         <div className="card-icon-wrap" style={{ background: color }} aria-hidden="true">
           {icon}
@@ -317,7 +322,7 @@ function HealthPanel({
           <div className="health-row">
             <span className="health-key">Database</span>
             <span className="health-val" style={{ color: 'var(--color-success)' }}>
-              {data.database === 'connected' ? '✅ Connected' : data.database ?? 'n/a'}
+              {data.database === 'connected' ? '✅ Connected' : (data.database ?? 'n/a')}
             </span>
           </div>
           <div className="health-row">
@@ -348,13 +353,7 @@ function HealthPanel({
 
 // ─── Protected Dashboard Layout ───────────────────────────────────────────────
 
-function DashboardLayout({
-  user,
-  onLogout,
-}: {
-  user: AuthUser;
-  onLogout: () => Promise<void>;
-}) {
+function DashboardLayout({ user, onLogout }: { user: AuthUser; onLogout: () => Promise<void> }) {
   const [activeView, setActiveView] = useState<DashboardView>('dashboard');
   const { status, data, errorMsg } = useHealthCheck();
 
@@ -374,11 +373,7 @@ function DashboardLayout({
 
   return (
     <div className="layout">
-      <Sidebar
-        activeView={activeView}
-        onSelectView={setActiveView}
-        userRole={user.role}
-      />
+      <Sidebar activeView={activeView} onSelectView={setActiveView} userRole={user.role} />
 
       <div className="main-content">
         {/* Top bar with authenticated user profile & logout */}
@@ -489,7 +484,8 @@ function DashboardLayout({
                         <div className="card-stat-label">Companies & Recruiters</div>
                       </div>
                       <div className="card-placeholder-notice" style={{ marginBottom: '14px' }}>
-                        Browse campus employers, manage tiering and verification, and invite recruiters.
+                        Browse campus employers, manage tiering and verification, and invite
+                        recruiters.
                       </div>
                       <button
                         type="button"

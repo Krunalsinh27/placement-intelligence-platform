@@ -5,11 +5,7 @@ import {
   AcademicBatchCreateSchema,
   AcademicBatchUpdateSchema,
 } from '@placement-platform/contracts';
-import {
-  listDepartments,
-  createDepartment,
-  updateBatch,
-} from '../api/academics.js';
+import { listDepartments, createDepartment, updateBatch } from '../api/academics.js';
 
 describe('Academic Management UI Logic & Validation (Step 7)', () => {
   beforeEach(() => {

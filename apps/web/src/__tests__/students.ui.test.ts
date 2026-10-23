@@ -5,12 +5,12 @@ import {
   StudentVerifyRequestSchema,
   StudentStatusUpdateRequestSchema,
 } from '@placement-platform/contracts';
+import { createStudent, verifyStudent, buildStudentQueryString } from '../api/students.js';
 import {
-  createStudent,
-  verifyStudent,
-  buildStudentQueryString,
-} from '../api/students.js';
-import { canCreateOrEditStudents, canVerifyStudents, canUpdateStudentStatus } from '../utils/permissions.js';
+  canCreateOrEditStudents,
+  canVerifyStudents,
+  canUpdateStudentStatus,
+} from '../utils/permissions.js';
 
 describe('Student Management UI Logic & Validation (Step 7)', () => {
   beforeEach(() => {
@@ -254,8 +254,7 @@ describe('Student Management UI Logic & Validation (Step 7)', () => {
       await expect(createStudent(validStudentInput)).rejects.toMatchObject({
         statusCode: 409,
         code: 'DUPLICATE_RESOURCE',
-        message:
-          'Student profile with enrollment number EN2026001 already exists in this college.',
+        message: 'Student profile with enrollment number EN2026001 already exists in this college.',
       });
     });
 
@@ -272,12 +271,12 @@ describe('Student Management UI Logic & Validation (Step 7)', () => {
         }),
       } as Response);
 
-      await expect(
-        verifyStudent('foreign-student-id', { isVerified: true })
-      ).rejects.toMatchObject({
-        statusCode: 403,
-        code: 'COORDINATOR_SCOPE_VIOLATION',
-      });
+      await expect(verifyStudent('foreign-student-id', { isVerified: true })).rejects.toMatchObject(
+        {
+          statusCode: 403,
+          code: 'COORDINATOR_SCOPE_VIOLATION',
+        }
+      );
     });
   });
 });

@@ -6,8 +6,7 @@ describe('Environment validation (envSchema)', () => {
     NODE_ENV: 'development',
     PORT: '4000',
     CLIENT_URL: 'http://localhost:5173',
-    MONGODB_URI:
-      'mongodb+srv://user:pass@cluster.mongodb.net/testdb?retryWrites=true&w=majority',
+    MONGODB_URI: 'mongodb+srv://user:pass@cluster.mongodb.net/testdb?retryWrites=true&w=majority',
     SESSION_SECRET: 'this-is-a-very-secure-secret-with-more-than-32-characters',
     LOG_LEVEL: 'info',
   };

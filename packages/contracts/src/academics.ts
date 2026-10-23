@@ -35,8 +35,7 @@ export const DepartmentUpdateSchema = z
     status: DepartmentStatusSchema.optional(),
   })
   .refine(
-    (data) =>
-      data.name !== undefined || data.code !== undefined || data.status !== undefined,
+    (data) => data.name !== undefined || data.code !== undefined || data.status !== undefined,
     {
       message: 'At least one field must be provided for update',
     }

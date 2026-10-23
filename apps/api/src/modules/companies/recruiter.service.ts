@@ -7,11 +7,7 @@ import {
 } from '../../models/company-recruiter.model.js';
 import { UserModel } from '../../models/user.model.js';
 import { AuditLogModel } from '../../models/audit-log.model.js';
-import {
-  generateSessionToken,
-  hashSessionToken,
-  hashPassword,
-} from '../../utils/password.js';
+import { generateSessionToken, hashSessionToken, hashPassword } from '../../utils/password.js';
 import {
   type RecruiterInviteRequest,
   type RecruiterAcceptInviteRequest,
@@ -102,8 +98,7 @@ export class RecruiterService {
     }
 
     // Role-based authorization and tenant/company scoping
-    const isCollegeOfficer =
-      caller.role === 'college_admin' || caller.role === 'tpo';
+    const isCollegeOfficer = caller.role === 'college_admin' || caller.role === 'tpo';
     const isCompanyAdmin = caller.role === 'company_admin';
 
     if (isCollegeOfficer) {
@@ -202,9 +197,7 @@ export class RecruiterService {
       existingRecruiter.invitedByOrgId = caller.orgId
         ? new mongoose.Types.ObjectId(caller.orgId)
         : null;
-      existingRecruiter.invitedByUserId = new mongoose.Types.ObjectId(
-        caller.userId
-      );
+      existingRecruiter.invitedByUserId = new mongoose.Types.ObjectId(caller.userId);
 
       await existingRecruiter.save();
 
@@ -243,9 +236,7 @@ export class RecruiterService {
         status: 'pending_invitation',
         invitationTokenHash: tokenHash,
         invitationExpiresAt: expiresAt,
-        invitedByOrgId: caller.orgId
-          ? new mongoose.Types.ObjectId(caller.orgId)
-          : null,
+        invitedByOrgId: caller.orgId ? new mongoose.Types.ObjectId(caller.orgId) : null,
         invitedByUserId: new mongoose.Types.ObjectId(caller.userId),
       });
     } catch (err: unknown) {
@@ -330,10 +321,7 @@ export class RecruiterService {
       );
     }
 
-    if (
-      !recruiter.invitationExpiresAt ||
-      recruiter.invitationExpiresAt <= new Date()
-    ) {
+    if (!recruiter.invitationExpiresAt || recruiter.invitationExpiresAt <= new Date()) {
       throw new RecruiterError(
         'This invitation has expired. Please request a new invitation.',
         'INVITATION_EXPIRED',
@@ -521,11 +509,7 @@ export class RecruiterService {
         );
       }
     } else {
-      throw new RecruiterError(
-        'You do not have permission to view recruiters.',
-        'FORBIDDEN',
-        403
-      );
+      throw new RecruiterError('You do not have permission to view recruiters.', 'FORBIDDEN', 403);
     }
 
     const query: Record<string, unknown> = { companyId: companyObjectId };
@@ -587,11 +571,7 @@ export class RecruiterService {
     });
 
     if (!recruiter) {
-      throw new RecruiterError(
-        'Recruiter not found for this company.',
-        'RECRUITER_NOT_FOUND',
-        404
-      );
+      throw new RecruiterError('Recruiter not found for this company.', 'RECRUITER_NOT_FOUND', 404);
     }
 
     if (recruiter.status === 'active') {
@@ -659,11 +639,7 @@ export class RecruiterService {
     });
 
     if (!recruiter) {
-      throw new RecruiterError(
-        'Recruiter not found for this company.',
-        'RECRUITER_NOT_FOUND',
-        404
-      );
+      throw new RecruiterError('Recruiter not found for this company.', 'RECRUITER_NOT_FOUND', 404);
     }
 
     if (recruiter.status === 'active') {
@@ -731,19 +707,11 @@ export class RecruiterService {
     });
 
     if (!recruiter) {
-      throw new RecruiterError(
-        'Recruiter not found for this company.',
-        'RECRUITER_NOT_FOUND',
-        404
-      );
+      throw new RecruiterError('Recruiter not found for this company.', 'RECRUITER_NOT_FOUND', 404);
     }
 
     if (recruiter.status === 'inactive') {
-      throw new RecruiterError(
-        'Recruiter is already inactive.',
-        'NO_STATE_CHANGE',
-        400
-      );
+      throw new RecruiterError('Recruiter is already inactive.', 'NO_STATE_CHANGE', 400);
     }
 
     if (recruiter.status === 'pending_invitation') {
@@ -789,8 +757,7 @@ export class RecruiterService {
     companyObjectId: mongoose.Types.ObjectId,
     caller: CallerContext
   ): Promise<void> {
-    const isCollegeOfficer =
-      caller.role === 'college_admin' || caller.role === 'tpo';
+    const isCollegeOfficer = caller.role === 'college_admin' || caller.role === 'tpo';
     const isCompanyAdmin = caller.role === 'company_admin';
 
     if (isCollegeOfficer) {

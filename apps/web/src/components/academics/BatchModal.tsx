@@ -109,7 +109,12 @@ export function BatchModal({ batch, isOpen, onClose, onSuccess }: BatchModalProp
   };
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="batch-modal-title">
+    <div
+      className="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="batch-modal-title"
+    >
       <div className="modal-card">
         <div className="modal-header">
           <div>

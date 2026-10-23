@@ -2,16 +2,11 @@ import { UserModel } from '../../models/user.model.js';
 import { OrganizationModel } from '../../models/organization.model.js';
 import { SessionModel } from '../../models/session.model.js';
 import { AuditLogModel } from '../../models/audit-log.model.js';
-import {
-  verifyPassword,
-  generateSessionToken,
-  hashSessionToken,
-} from '../../utils/password.js';
+import { verifyPassword, generateSessionToken, hashSessionToken } from '../../utils/password.js';
 import type { AuthUser, LoginRequest } from '@placement-platform/contracts';
 
 // Constant dummy hash to mitigate user enumeration via timing discrepancies
-const DUMMY_HASH =
-  '$argon2id$v=19$m=65536,t=3,p=1$c29tZXNhbHQ$P2Tz9Fq7d3Y9/pX5j7Q1Q';
+const DUMMY_HASH = '$argon2id$v=19$m=65536,t=3,p=1$c29tZXNhbHQ$P2Tz9Fq7d3Y9/pX5j7Q1Q';
 
 export interface LoginResult {
   rawToken: string;

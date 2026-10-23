@@ -35,11 +35,7 @@ declare global {
  * 2. The associated User exists and is 'active'.
  * 3. The associated Organization exists and is 'active' (when orgId is present).
  */
-export async function requireAuth(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
+export async function requireAuth(req: Request, res: Response, next: NextFunction): Promise<void> {
   const env = getEnv();
   const isProd = env.NODE_ENV === 'production';
   const cookieName = getSessionCookieName(isProd);

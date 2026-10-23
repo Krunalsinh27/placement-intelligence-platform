@@ -153,11 +153,7 @@ export class AcademicService {
       );
 
       if (!department) {
-        throw new AcademicError(
-          'Department not found in your college.',
-          'NOT_FOUND',
-          404
-        );
+        throw new AcademicError('Department not found in your college.', 'NOT_FOUND', 404);
       }
 
       await AuditLogModel.create({
@@ -263,11 +259,7 @@ export class AcademicService {
     });
 
     if (!existing) {
-      throw new AcademicError(
-        'Academic batch not found in your college.',
-        'NOT_FOUND',
-        404
-      );
+      throw new AcademicError('Academic batch not found in your college.', 'NOT_FOUND', 404);
     }
 
     const startYear = input.startYear ?? existing.startYear;
@@ -304,11 +296,7 @@ export class AcademicService {
       );
 
       if (!batch) {
-        throw new AcademicError(
-          'Academic batch not found in your college.',
-          'NOT_FOUND',
-          404
-        );
+        throw new AcademicError('Academic batch not found in your college.', 'NOT_FOUND', 404);
       }
 
       await AuditLogModel.create({

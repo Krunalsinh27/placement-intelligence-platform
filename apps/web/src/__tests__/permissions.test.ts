@@ -13,7 +13,6 @@ import {
   canManageRecruiters,
 } from '../utils/permissions.js';
 describe('Frontend Role-Based Permission Matrix (Step 7)', () => {
-
   describe('canManageAcademics()', () => {
     it('allows only college_admin and tpo to manage departments and batches', () => {
       expect(canManageAcademics('college_admin')).toBe(true);

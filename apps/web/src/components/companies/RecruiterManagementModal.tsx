@@ -444,7 +444,14 @@ export function RecruiterManagementModal({
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '8px' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  gap: '8px',
+                  marginTop: '8px',
+                }}
+              >
                 <button
                   type="button"
                   className="btn-secondary"
@@ -523,8 +530,7 @@ export function RecruiterManagementModal({
                                 recruiter.role === 'company_admin'
                                   ? 'rgba(139, 92, 246, 0.15)'
                                   : 'rgba(99, 102, 241, 0.15)',
-                              color:
-                                recruiter.role === 'company_admin' ? '#c4b5fd' : '#a5b4fc',
+                              color: recruiter.role === 'company_admin' ? '#c4b5fd' : '#a5b4fc',
                             }}
                           >
                             {recruiter.role.replace('_', ' ')}
@@ -544,11 +550,7 @@ export function RecruiterManagementModal({
                                 : isPending
                                   ? 'rgba(245, 158, 11, 0.15)'
                                   : 'rgba(148, 163, 184, 0.15)',
-                              color: isActive
-                                ? '#4ade80'
-                                : isPending
-                                  ? '#fbbf24'
-                                  : '#94a3b8',
+                              color: isActive ? '#4ade80' : isPending ? '#fbbf24' : '#94a3b8',
                             }}
                           >
                             {recruiter.status.replace('_', ' ')}
@@ -574,9 +576,7 @@ export function RecruiterManagementModal({
                                   type="button"
                                   className="btn-danger"
                                   style={{ padding: '3px 8px', fontSize: '11px' }}
-                                  onClick={() =>
-                                    setConfirmAction({ type: 'revoke', recruiter })
-                                  }
+                                  onClick={() => setConfirmAction({ type: 'revoke', recruiter })}
                                   title="Revoke invitation"
                                 >
                                   Revoke
@@ -588,9 +588,7 @@ export function RecruiterManagementModal({
                                 type="button"
                                 className="btn-danger"
                                 style={{ padding: '3px 8px', fontSize: '11px' }}
-                                onClick={() =>
-                                  setConfirmAction({ type: 'deactivate', recruiter })
-                                }
+                                onClick={() => setConfirmAction({ type: 'deactivate', recruiter })}
                                 title="Deactivate recruiter"
                               >
                                 Deactivate

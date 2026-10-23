@@ -118,8 +118,7 @@ describe('Student Management Integration Tests & Cross-Tenant Security Suite (St
       status: 'unplaced',
       isVerified: false,
       verificationDetails: undefined as
-        | { verifiedBy?: mongoose.Types.ObjectId; verifiedAt?: Date; remarks?: string }
-        | undefined,
+        { verifiedBy?: mongoose.Types.ObjectId; verifiedAt?: Date; remarks?: string } | undefined,
       createdAt: new Date(),
       updatedAt: new Date(),
       save: vi.fn().mockResolvedValue(true),
@@ -602,8 +601,14 @@ describe('Student Management Integration Tests & Cross-Tenant Security Suite (St
     it('5. Same enrollment number can exist in two different colleges without conflict', async () => {
       // 1. College A creates student with enrollment 0101CS221001
       mockSession('tpo', collegeAOrgId);
-      vi.spyOn(DepartmentModel, 'findOne').mockResolvedValue({ _id: collegeADept1Id, orgId: collegeAOrgId } as never);
-      vi.spyOn(AcademicBatchModel, 'findOne').mockResolvedValue({ _id: collegeABatchId, orgId: collegeAOrgId } as never);
+      vi.spyOn(DepartmentModel, 'findOne').mockResolvedValue({
+        _id: collegeADept1Id,
+        orgId: collegeAOrgId,
+      } as never);
+      vi.spyOn(AcademicBatchModel, 'findOne').mockResolvedValue({
+        _id: collegeABatchId,
+        orgId: collegeAOrgId,
+      } as never);
       vi.spyOn(StudentProfileModel, 'create').mockResolvedValueOnce(
         mockStudentDoc({ orgId: collegeAOrgId, enrollmentNumber: '0101CS221001' }) as never
       );
@@ -619,8 +624,14 @@ describe('Student Management Integration Tests & Cross-Tenant Security Suite (St
 
       // 2. College B creates student with the same enrollment 0101CS221001
       mockSession('tpo', collegeBOrgId);
-      vi.spyOn(DepartmentModel, 'findOne').mockResolvedValue({ _id: collegeBDeptId, orgId: collegeBOrgId } as never);
-      vi.spyOn(AcademicBatchModel, 'findOne').mockResolvedValue({ _id: collegeBBatchId, orgId: collegeBOrgId } as never);
+      vi.spyOn(DepartmentModel, 'findOne').mockResolvedValue({
+        _id: collegeBDeptId,
+        orgId: collegeBOrgId,
+      } as never);
+      vi.spyOn(AcademicBatchModel, 'findOne').mockResolvedValue({
+        _id: collegeBBatchId,
+        orgId: collegeBOrgId,
+      } as never);
       vi.spyOn(StudentProfileModel, 'create').mockResolvedValueOnce(
         mockStudentDoc({ orgId: collegeBOrgId, enrollmentNumber: '0101CS221001' }) as never
       );
@@ -641,8 +652,14 @@ describe('Student Management Integration Tests & Cross-Tenant Security Suite (St
 
     it('6. Multiple student profiles without a linked userId can be created without unique-index conflict', async () => {
       mockSession('tpo', collegeAOrgId);
-      vi.spyOn(DepartmentModel, 'findOne').mockResolvedValue({ _id: collegeADept1Id, orgId: collegeAOrgId } as never);
-      vi.spyOn(AcademicBatchModel, 'findOne').mockResolvedValue({ _id: collegeABatchId, orgId: collegeAOrgId } as never);
+      vi.spyOn(DepartmentModel, 'findOne').mockResolvedValue({
+        _id: collegeADept1Id,
+        orgId: collegeAOrgId,
+      } as never);
+      vi.spyOn(AcademicBatchModel, 'findOne').mockResolvedValue({
+        _id: collegeABatchId,
+        orgId: collegeAOrgId,
+      } as never);
 
       // Student 1 (userId: undefined)
       vi.spyOn(StudentProfileModel, 'create').mockResolvedValueOnce(
@@ -779,7 +796,9 @@ describe('Student Management Integration Tests & Cross-Tenant Security Suite (St
         status: 'unplaced',
       });
 
-      const updateSpy = vi.spyOn(StudentProfileModel, 'findOneAndUpdate').mockResolvedValue(studentDoc as never);
+      const updateSpy = vi
+        .spyOn(StudentProfileModel, 'findOneAndUpdate')
+        .mockResolvedValue(studentDoc as never);
 
       const res = await request(app)
         .put(`/api/v1/students/${studentId.toString()}`)

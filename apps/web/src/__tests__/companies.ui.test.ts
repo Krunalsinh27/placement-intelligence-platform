@@ -177,9 +177,7 @@ describe('Company and Recruiter UI Validation & Business Logic (Phase 6, Step 4)
 
       expect(resultMissingRemarks.success).toBe(false);
       if (!resultMissingRemarks.success) {
-        expect(resultMissingRemarks.error.issues[0]?.message).toContain(
-          'minimum 5 characters'
-        );
+        expect(resultMissingRemarks.error.issues[0]?.message).toContain('minimum 5 characters');
       }
 
       const resultTooShort = CompanyVerifyRequestSchema.safeParse({
@@ -189,9 +187,7 @@ describe('Company and Recruiter UI Validation & Business Logic (Phase 6, Step 4)
 
       expect(resultTooShort.success).toBe(false);
       if (!resultTooShort.success) {
-        expect(resultTooShort.error.issues[0]?.message).toContain(
-          'minimum 5 characters'
-        );
+        expect(resultTooShort.error.issues[0]?.message).toContain('minimum 5 characters');
       }
 
       const resultValidRemarks = CompanyVerifyRequestSchema.safeParse({

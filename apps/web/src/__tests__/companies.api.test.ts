@@ -232,7 +232,9 @@ describe('Company and Recruiter API Client (Phase 6, Step 4)', () => {
 
   describe('Recruiter Management API calls', () => {
     it('listRecruiters calls GET /api/v1/companies/:id/recruiters', async () => {
-      const mockList = [{ id: 'r1', name: 'John Recruiter', email: 'john@acme.com', role: 'company_admin' }];
+      const mockList = [
+        { id: 'r1', name: 'John Recruiter', email: 'john@acme.com', role: 'company_admin' },
+      ];
       globalThis.fetch = vi.fn().mockResolvedValue({
         ok: true,
         json: async () => ({ data: mockList }),

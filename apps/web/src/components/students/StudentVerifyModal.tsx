@@ -46,7 +46,12 @@ export function StudentVerifyModal({
   };
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="verify-modal-title">
+    <div
+      className="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="verify-modal-title"
+    >
       <div className="modal-card">
         <div className="modal-header">
           <div>

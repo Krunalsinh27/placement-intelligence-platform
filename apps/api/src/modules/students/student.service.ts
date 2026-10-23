@@ -1,8 +1,5 @@
 import mongoose from 'mongoose';
-import {
-  StudentProfileModel,
-  type IStudentProfile,
-} from '../../models/student-profile.model.js';
+import { StudentProfileModel, type IStudentProfile } from '../../models/student-profile.model.js';
 import { DepartmentModel } from '../../models/department.model.js';
 import { AcademicBatchModel } from '../../models/academic-batch.model.js';
 import { AuditLogModel } from '../../models/audit-log.model.js';
@@ -249,10 +246,7 @@ export class StudentService {
 
     const [total, students] = await Promise.all([
       StudentProfileModel.countDocuments(query),
-      StudentProfileModel.find(query)
-        .sort(sortObject)
-        .skip(skip)
-        .limit(limit),
+      StudentProfileModel.find(query).sort(sortObject).skip(skip).limit(limit),
     ]);
 
     const totalPages = Math.ceil(total / limit);

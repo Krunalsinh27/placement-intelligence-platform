@@ -376,7 +376,9 @@ describe('Company and Recruiter Contracts', () => {
       // Repeated transitions are not allowed
       expect(isValidCompanyStatusTransition('verified', 'verified')).toBe(false);
       expect(isValidCompanyStatusTransition('blacklisted', 'blacklisted')).toBe(false);
-      expect(isValidCompanyStatusTransition('pending_verification', 'pending_verification')).toBe(false);
+      expect(isValidCompanyStatusTransition('pending_verification', 'pending_verification')).toBe(
+        false
+      );
     });
 
     it('normalizes website URLs consistently and conservatively', () => {
@@ -384,11 +386,17 @@ describe('Company and Recruiter Contracts', () => {
       expect(normalizeCompanyWebsite('HTTPS://WWW.GOOGLE.COM')).toBe('https://www.google.com');
       expect(normalizeCompanyWebsite('https://www.google.com:443/')).toBe('https://www.google.com');
       expect(normalizeCompanyWebsite('http://google.com/')).toBe('http://google.com');
-      expect(normalizeCompanyWebsite('https://google.com?utm_source=feed#team')).toBe('https://google.com');
-      expect(normalizeCompanyWebsite('https://acme.github.io/careers/')).toBe('https://acme.github.io/careers');
+      expect(normalizeCompanyWebsite('https://google.com?utm_source=feed#team')).toBe(
+        'https://google.com'
+      );
+      expect(normalizeCompanyWebsite('https://acme.github.io/careers/')).toBe(
+        'https://acme.github.io/careers'
+      );
 
       // Subdomains kept distinct
-      expect(normalizeCompanyWebsite('https://app.acme.com')).not.toBe(normalizeCompanyWebsite('https://acme.com'));
+      expect(normalizeCompanyWebsite('https://app.acme.com')).not.toBe(
+        normalizeCompanyWebsite('https://acme.com')
+      );
 
       // Empty / invalid
       expect(normalizeCompanyWebsite(null)).toBeNull();
@@ -731,7 +739,9 @@ describe('Company and Recruiter Contracts', () => {
     });
 
     it('rejects identical state transitions (from === to)', () => {
-      expect(isValidRecruiterStatusTransition('pending_invitation', 'pending_invitation')).toBe(false);
+      expect(isValidRecruiterStatusTransition('pending_invitation', 'pending_invitation')).toBe(
+        false
+      );
       expect(isValidRecruiterStatusTransition('active', 'active')).toBe(false);
       expect(isValidRecruiterStatusTransition('inactive', 'inactive')).toBe(false);
     });
@@ -742,4 +752,3 @@ describe('Company and Recruiter Contracts', () => {
     });
   });
 });
-

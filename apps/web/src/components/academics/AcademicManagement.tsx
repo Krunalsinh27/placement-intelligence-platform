@@ -111,7 +111,9 @@ export function AcademicManagement() {
 
       {!canManage && (
         <div className="scope-banner read-only-banner" role="status">
-          <span className="scope-icon" aria-hidden="true">ℹ️</span>
+          <span className="scope-icon" aria-hidden="true">
+            ℹ️
+          </span>
           <span>
             Read-only Access: Academic departments and batches can only be modified by College
             Placement Administrators (TPO / College Admin).
@@ -160,7 +162,9 @@ export function AcademicManagement() {
             </div>
           ) : departments.length === 0 ? (
             <div className="empty-state-card">
-              <div className="empty-state-icon" aria-hidden="true">🏢</div>
+              <div className="empty-state-icon" aria-hidden="true">
+                🏢
+              </div>
               <h3 className="empty-state-title">No Departments Found</h3>
               <p className="empty-state-desc">
                 {canManage
@@ -200,7 +204,9 @@ export function AcademicManagement() {
                       </td>
                       <td className="font-medium text-primary">{dept.name}</td>
                       <td>
-                        <span className={`status-pill ${dept.status === 'active' ? 'ok' : 'error'}`}>
+                        <span
+                          className={`status-pill ${dept.status === 'active' ? 'ok' : 'error'}`}
+                        >
                           <span className="status-dot" aria-hidden="true" />
                           {dept.status === 'active' ? 'Active' : 'Inactive'}
                         </span>
@@ -250,7 +256,9 @@ export function AcademicManagement() {
             </div>
           ) : batches.length === 0 ? (
             <div className="empty-state-card">
-              <div className="empty-state-icon" aria-hidden="true">📅</div>
+              <div className="empty-state-icon" aria-hidden="true">
+                📅
+              </div>
               <h3 className="empty-state-title">No Batches Found</h3>
               <p className="empty-state-desc">
                 {canManage
@@ -297,16 +305,16 @@ export function AcademicManagement() {
                             batch.status === 'active'
                               ? 'ok'
                               : batch.status === 'graduated'
-                              ? 'warning'
-                              : 'error'
+                                ? 'warning'
+                                : 'error'
                           }`}
                         >
                           <span className="status-dot" aria-hidden="true" />
                           {batch.status === 'active'
                             ? 'Active (Enrolled)'
                             : batch.status === 'graduated'
-                            ? 'Graduated'
-                            : 'Archived'}
+                              ? 'Graduated'
+                              : 'Archived'}
                         </span>
                       </td>
                       <td className="text-muted">

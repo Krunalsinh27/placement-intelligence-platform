@@ -280,16 +280,11 @@ academicRouter.put(
     const requestId = crypto.randomUUID();
     try {
       const orgId = getTenantScope(req);
-      const batch = await academicService.updateBatch(
-        orgId,
-        req.params.id as string,
-        req.body,
-        {
-          userId: req.session?.userId,
-          ipAddress: req.ip || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-        }
-      );
+      const batch = await academicService.updateBatch(orgId, req.params.id as string, req.body, {
+        userId: req.session?.userId,
+        ipAddress: req.ip || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'],
+      });
 
       res.status(200).json({
         data: batch,

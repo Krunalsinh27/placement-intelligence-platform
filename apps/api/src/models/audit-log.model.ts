@@ -30,4 +30,3 @@ AuditLogSchema.index({ orgId: 1, timestamp: -1 });
 export const AuditLogModel: mongoose.Model<IAuditLog> =
   (mongoose.models['AuditLog'] as mongoose.Model<IAuditLog>) ||
   mongoose.model<IAuditLog>('AuditLog', AuditLogSchema);
-

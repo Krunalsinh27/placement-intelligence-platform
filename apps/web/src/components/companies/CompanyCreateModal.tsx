@@ -12,11 +12,7 @@ interface CompanyCreateModalProps {
   onSuccess: (company: CollegeCompanyProfileResponse) => void;
 }
 
-export function CompanyCreateModal({
-  isOpen,
-  onClose,
-  onSuccess,
-}: CompanyCreateModalProps) {
+export function CompanyCreateModal({ isOpen, onClose, onSuccess }: CompanyCreateModalProps) {
   // Global company fields
   const [name, setName] = useState('');
   const [legalName, setLegalName] = useState('');
@@ -98,9 +94,7 @@ export function CompanyCreateModal({
     } catch (err) {
       if (err instanceof ApiError) {
         if (err.code === 'COMPANY_DATA_CONFLICT') {
-          setFormError(
-            `Company Conflict: ${err.message}`
-          );
+          setFormError(`Company Conflict: ${err.message}`);
         } else if (err.code === 'DUPLICATE_RESOURCE') {
           setFormError('This company is already registered in your college directory.');
         } else {

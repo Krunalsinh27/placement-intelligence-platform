@@ -1,8 +1,5 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
-import type {
-  StudentStatus,
-  StudentGender,
-} from '@placement-platform/contracts';
+import type { StudentStatus, StudentGender } from '@placement-platform/contracts';
 
 export interface IStudentProfile extends Document {
   orgId: Types.ObjectId;

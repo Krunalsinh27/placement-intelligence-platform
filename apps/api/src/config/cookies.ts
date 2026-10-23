@@ -36,4 +36,3 @@ export function getClearSessionCookieOptions(isProduction: boolean): CookieOptio
     path: '/',
   };
 }
-
