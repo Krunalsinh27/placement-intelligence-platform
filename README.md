@@ -18,8 +18,8 @@ Multi-tenant SaaS platform for college placement operations, training and placem
 ```text
 .
 ├── apps/
-│   ├── api/                 # Express backend — health endpoint, modular structure
-│   └── web/                 # React SPA — dashboard shell, sidebar, health indicator
+│   ├── api/                 # Express backend modular monolith (typecheck stub)
+│   └── web/                 # React SPA frontend (typecheck stub)
 ├── packages/
 │   ├── config/              # Shared ESLint and Prettier configs
 │   └── contracts/           # Shared Zod 4 schemas, DTOs, and enums
@@ -27,7 +27,6 @@ Multi-tenant SaaS platform for college placement operations, training and placem
 │   ├── adr/                 # Architecture Decision Records (Drafts)
 │   ├── architecture.md      # System architecture document
 │   └── placement-platform-blueprint.md # Canonical product and engineering blueprint
-├── .env.example             # Safe environment variable template
 ├── .github/                 # Workflows and PR templates
 └── tsconfig.base.json       # Strict TypeScript compiler options
 ```
